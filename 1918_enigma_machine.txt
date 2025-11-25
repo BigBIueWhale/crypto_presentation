@@ -1,0 +1,74 @@
+---
+File: /1918_enigma_machine.txt
+---
+
+=============================================================================
+ALGORITHM: THE ENIGMA MACHINE (Arthur Scherbius, 1918)
+TYPE:      Electromechanical Polyalphabetic Substitution
+STATUS:    The "Industrialization" of Cryptography
+=============================================================================
+
+1. THE CORE CONCEPT
+-----------------------------------------------------------------------------
+Before Enigma, codes were manual (book cyphers). Enigma mechanized encryption.
+It generates a "Keystream" that changes with every single button press.
+
+If you type "HELLO":
+- The first 'L' might encrypt to 'X'.
+- The second 'L' might encrypt to 'P'.
+
+This destroyed frequency analysis (the method used to solve Sherlock Holmes
+style puzzles), because the frequency of letters in the ciphertext became flat.
+
+
+2. THE MECHANISM (THE "SHIFTING MAZE" ANALOGY)
+-----------------------------------------------------------------------------
+Imagine a maze where the walls move every time you take a step.
+
+PATHWAY:
+1. Keyboard: Operator presses 'A'.
+2. Plugboard (Steckerbrett): Swaps 'A' with another letter (e.g., 'M').
+3. Rotors (Walzen): The signal passes through 3 (or 4) rotating wheels.
+   - Each wheel has internal wiring that scrambles the path.
+4. Reflector (Umkehrwalze): The signal hits a mirror at the end, turns around,
+   and goes back through the rotors in reverse order.
+5. Lampboard: The final signal lights up a bulb (e.g., 'Z').
+
+THE HEARTBEAT:
+Every time a key is pressed, the rightmost rotor clicks forward one step (1/26).
+Like an odometer, once it completes a full turn, it kicks the middle rotor.
+This means the electrical path (the circuit) is physically different for
+every single character of the message.
+
+
+3. THE KEY (THE "DAILY SETTINGS")
+-----------------------------------------------------------------------------
+Security did not rely on the machine's design (which was known), but on the
+initial state (The Key). The Germans changed this every day at midnight.
+
+The Total Search Space was approx 158 quintillion (10^18) possibilities:
+1. Rotor Order: Which 3 rotors out of 5 are installed? (60 combinations)
+2. Rotor Settings: What is the starting letter for each? (26^3 = 17,576)
+3. Ring Settings: Internal wiring offset.
+4. Plugboard: 10 wires connecting 20 letters. (150 trillion combinations).
+
+* The Plugboard provided the massive numbers, but the Rotors provided the
+  cryptographic logic.
+
+
+4. THE FATAL FLAW (WHY IT BROKE)
+-----------------------------------------------------------------------------
+Despite the math, Enigma had a mechanical constraint that Turing exploited:
+
+THE REFLECTOR CONSTRAINT:
+Because the signal had to bounce off the reflector to return to the lamps,
+a letter could never encrypt to itself.
+- Input 'A' could be 'B', 'Z', or 'X'.
+- Input 'A' could NEVER be 'A'.
+
+CRYPTANALYSIS IMPACT:
+This allowed Bletchley Park to use "Cribs" (guessed phrases like "WETTER"
+for weather reports). If they aligned a crib with the ciphertext and a
+letter matched itself, they knew that position was impossible. This
+eliminated massive chunks of the search space, allowing the "Bombe" machines
+to find the daily key mechanically.
