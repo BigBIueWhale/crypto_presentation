@@ -1,50 +1,64 @@
 =============================================================================
-ALGORITHM: ECDH (Elliptic Curve Diffie-Hellman)
+ALGORITHM: ECC (Elliptic Curve Cryptography)
 INVENTED:  1985 by Neal Koblitz (Jewish) & Victor Miller (Jewish)
-STATUS:    The "Titanium" Upgrade (Lighter, Stronger, Faster)
+SUB-TYPE:  ECDSA (Signatures) & ECDH (Exchange)
+CURVE:     secp256k1 (The specific curve used in Bitcoin)
+STATUS:    The "Titanium" Upgrade & The Mathematical "Atom" of Bitcoin
 =============================================================================
 
 1. THE PROBLEM WITH RSA (THE BLOAT)
 -----------------------------------------------------------------------------
-By the 2000s, RSA was getting fat.
-To keep RSA secure against faster computers, the keys had to get exponentially
-larger.
-- An RSA key is now like a massive 4-inch thick steel vault door.
-- It’s secure, but it’s heavy. It makes your phone battery die and slows down
-  web servers.
-- We needed something that offered "Vault Door" security with the weight of a
-  credit card.
+RSA relies on factoring massive integers. To remain secure against modern
+computing, RSA keys must be massive (3072+ bits).
+- RSA Key = A 4-inch steel vault door. Secure, but too heavy for global scale.
+- Bitcoin required a key that offered "Vault" security with the weight of a
+  credit card to facilitate fast, efficient global propagation.
 
-2. THE MECHANISM (GEOMETRY VS. ARITHMETIC)
+2. THE MECHANISM (FIRST PRINCIPLES: SCALAR MULTIPLICATION)
 -----------------------------------------------------------------------------
-Is it fundamentally different? YES.
-- RSA relies on factoring massive numbers (Arithmetic).
-- ECDH relies on points bouncing around a curved line (Algebraic Geometry).
+ECC relies on the "Discrete Logarithm Problem" on a curve, not factoring.
 
-The "Billiards" Analogy:
-Imagine a weirdly shaped billiards table (the Elliptic Curve).
-1. You place a ball at a specific spot.
-2. You hit it so it bounces precisely 5,000,000 times.
-3. It lands at a final coordinate.
+The Physical Construction of a Bitcoin Key:
+Imagine a specific mathematical curve (secp256k1).
+There is a fixed starting point on this curve called the Generator (G).
+
+A. The Private Key (The Scalar)
+   You pick a random number, let's call it 'k'.
+   (In Bitcoin, this is just a 256-bit integer).
+
+B. The Public Key (The Coordinate)
+   You perform a geometric operation: You "add" the Generator point (G) to
+   itself 'k' times.
+   Formula: P = k * G
+
+   - Visual Analogy: You place a billiard ball at point G. You strike it so
+     it bounces exactly 'k' times.
+   - Result: The ball comes to rest at a specific (x, y) coordinate.
+   - THAT COORDINATE IS YOUR PUBLIC KEY.
 
 The Trapdoor:
-It is trivial to hit the ball 5 million times and find the end point.
-But if you only see the start point and the end point, it is mathematically
-impossible to figure out how many times it bounced to get there.
+If I give you the final coordinate (Public Key), it is mathematically
+impossible to calculate how many times the ball bounced (Private Key) to get
+there.
 
-3. WHY IT IS BETTER THAN RSA
+3. IS A BITCOIN KEY A DIFFIE-HELLMAN KEY?
 -----------------------------------------------------------------------------
-It comes down to efficiency. ECDH provides the same security with a fraction
-of the bits.
+LITERALLY: YES.
+FUNCTIONALLY: USED DIFFERENTLY.
 
-The Exchange Rate:
-- RSA Key (3072 bits) = Gold bar (Heavy, hard to move).
-- ECC Key (256 bits)  = Diamond (Tiny, easy to move, same value).
+The Mathematical Identity:
+A Bitcoin Public Key and an ECDH Public Key are physically the exact same
+object: A specific (x, y) point on the secp256k1 curve derived by P = k * G.
 
-Because the keys are tiny:
-1. Mobile phones can encrypt data without draining the battery.
-2. Web connections (SSL/TLS) happen instantly.
-3. It fits on tiny chips (Smart Cards, Passports).
+If you took your Bitcoin Public Key and I took mine, we could perform the
+Diffie-Hellman operation (ECDH) to derive a shared secret code. The math is
+identical.
 
-* RSA is still used because it's older and simpler to understand, but ECDH
-  (and its cousin ECDSA) is the actual engine running the modern mobile web.
+The Application Difference:
+1. ECDH (Encryption): Uses the point to *derive* a shared secret to encrypt
+   data (e.g., Secure Chat).
+2. ECDSA (Bitcoin): Uses the point to *verify* that the person moving funds
+   knows the secret 'k' (scalar) without revealing it.
+
+Bitcoin uses the Elliptic Curve geometry to create the keys, but uses the
+Digital Signature Algorithm (ECDSA) to authorize transactions.
