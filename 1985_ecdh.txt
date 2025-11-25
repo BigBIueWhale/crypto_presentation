@@ -1,0 +1,50 @@
+=============================================================================
+ALGORITHM: ECDH (Elliptic Curve Diffie-Hellman)
+INVENTED:  1985 (Neal Koblitz & Victor Miller)
+STATUS:    The "Titanium" Upgrade (Lighter, Stronger, Faster)
+=============================================================================
+
+1. THE PROBLEM WITH RSA (THE BLOAT)
+-----------------------------------------------------------------------------
+By the 2000s, RSA was getting fat.
+To keep RSA secure against faster computers, the keys had to get exponentially
+larger.
+- An RSA key is now like a massive 4-inch thick steel vault door.
+- It’s secure, but it’s heavy. It makes your phone battery die and slows down
+  web servers.
+- We needed something that offered "Vault Door" security with the weight of a
+  credit card.
+
+2. THE MECHANISM (GEOMETRY VS. ARITHMETIC)
+-----------------------------------------------------------------------------
+Is it fundamentally different? YES.
+- RSA relies on factoring massive numbers (Arithmetic).
+- ECDH relies on points bouncing around a curved line (Algebraic Geometry).
+
+The "Billiards" Analogy:
+Imagine a weirdly shaped billiards table (the Elliptic Curve).
+1. You place a ball at a specific spot.
+2. You hit it so it bounces precisely 5,000,000 times.
+3. It lands at a final coordinate.
+
+The Trapdoor:
+It is trivial to hit the ball 5 million times and find the end point.
+But if you only see the start point and the end point, it is mathematically
+impossible to figure out how many times it bounced to get there.
+
+3. WHY IT IS BETTER THAN RSA
+-----------------------------------------------------------------------------
+It comes down to efficiency. ECDH provides the same security with a fraction
+of the bits.
+
+The Exchange Rate:
+- RSA Key (3072 bits) = Gold bar (Heavy, hard to move).
+- ECC Key (256 bits)  = Diamond (Tiny, easy to move, same value).
+
+Because the keys are tiny:
+1. Mobile phones can encrypt data without draining the battery.
+2. Web connections (SSL/TLS) happen instantly.
+3. It fits on tiny chips (Smart Cards, Passports).
+
+* RSA is still used because it's older and simpler to understand, but ECDH
+  (and its cousin ECDSA) is the actual engine running the modern mobile web.
