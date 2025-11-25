@@ -6,6 +6,19 @@ TYPE:      Full Asymmetric Cryptosystem (Encryption & Digital Signatures)
 STATUS:    The "Swiss Army Knife" of Public Key Cryptography
 =============================================================================
 
+0. THE ORIGIN (THE PASSOVER BREAKTHROUGH)
+-----------------------------------------------------------------------------
+The algorithm was born in April 1977, following a Jewish Passover Seder.
+- The trio had spent a year struggling to find a "Trapdoor Function."
+- After attending a student's Seder (and drinking the traditional Manischewitz
+  wine), Ron Rivest went home but found himself unable to sleep.
+- Lying on his couch, the math suddenly crystallized: the solution lay in
+  using Prime Factorization.
+- Rivest wrote the paper by sunrise and handed it to Shamir and Adleman the
+  next morning. (Legend has it the "P" in the variables originally stood
+  for "Passover" or "Pesach").
+
+
 1. THE CORE CONCEPT
 -----------------------------------------------------------------------------
 Unlike Diffie-Hellman, which acts only as a secure handshake, RSA is a fully
