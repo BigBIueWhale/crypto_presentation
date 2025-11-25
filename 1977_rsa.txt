@@ -1,0 +1,78 @@
+=============================================================================
+ALGORITHM: RSA (RIVEST–SHAMIR–ADLEMAN, 1977)
+TYPE:      Full Asymmetric Cryptosystem (Encryption & Digital Signatures)
+STATUS:    The "Swiss Army Knife" of Public Key Cryptography
+=============================================================================
+
+1. THE CORE CONCEPT
+-----------------------------------------------------------------------------
+Unlike Diffie-Hellman, which acts only as a secure handshake, RSA is a fully
+functional cryptosystem. It solves the two fundamental problems of trust:
+1. Confidentiality (Encryption): "Only you can read this."
+2. Authenticity (Signatures): "I definitely wrote this."
+
+RSA turns keys from "mixing ingredients" into "functional tools."
+- The Public Key is a Padlock (anyone can lock, only one can open).
+- The Private Key is a Signet Ring (only one can stamp, anyone can verify).
+
+
+2. THE MECHANISM (THE "LOCK & STAMP" ANALOGY)
+-----------------------------------------------------------------------------
+RSA works because the math is reversible (Trapdoor Permutation).
+
+SCENARIO A: ENCRYPTION (Sending Secrets)
+- Alice has Bob's Public Key (An open padlock).
+- Alice puts a message in a box and locks it with Bob's padlock.
+- Once locked, even Alice cannot open it.
+- She sends the box to Bob.
+- Bob uses his Private Key to unlock it.
+
+SCENARIO B: DIGITAL SIGNATURES (Proving Identity)
+- Alice writes a document (or code like a BOOT.BIN file).
+- Alice calculates a "hash" of the file.
+- She encrypts that hash with her Private Key (The "Stamp").
+- Anyone with Alice's Public Key can decrypt the signature.
+- If the decrypted hash matches the file, it is mathematically proven that 
+  Alice signed it and the file has not been modified by a single byte.
+
+
+3. THE MATHEMATICAL LOGIC
+-----------------------------------------------------------------------------
+The math relies on the "Integer Factorization Problem."
+n = p * q (Very large primes). 
+It is easy to multiply p and q, but impossible to find them if given only n.
+
+e = Public Exponent (The Lock)
+d = Private Exponent (The Key)
+
+1. Encryption:  Ciphertext = (Message ^ e) mod n
+2. Decryption:  Message    = (Ciphertext ^ d) mod n
+
+* Note the reversibility: You can input data, apply the exponent, and get
+  the original data back using the inverse exponent. DH cannot do this.
+
+
+4. THE CAPABILITIES (WHY IT IS THE "FULL SYSTEM")
+-----------------------------------------------------------------------------
+RSA is considered the first "true" solution because it enables modern trust
+infrastructure that DH cannot handle alone:
+
+A. DIRECT ENCRYPTION
+   RSA allows you to take an arbitrary number (or a symmetric key) and 
+   encrypt it directly. You don't need to "derive" a key; you just transmit 
+   the secret payload securely inside the RSA math shell.
+
+B. SSL/TLS CERTIFICATES (The Internet)
+   When you visit "google.com", your browser receives an RSA Public Key.
+   Because a trusted Authority signed it (using RSA signatures), your 
+   browser knows it is talking to the real Google, not an imposter.
+
+C. SECURE BOOT (Hardware Trust / BOOT.BIN)
+   This is the gold standard for hardware security.
+   - The Manufacturer (Sony/Apple/Microsoft) signs the firmware image 
+     (BOOT.BIN) with their master Private Key in a secure bunker.
+   - The device (PlayStation/iPhone) has the manufacturer's Public Key 
+     hard-coded (burned via eFuses) into the CPU silicon.
+   - On power-up, the CPU uses the Public Key to verify the signature.
+   - If the signature is valid, the code runs. If a hacker changed one bit 
+     of the BOOT.BIN, the math fails, and the device refuses to boot.

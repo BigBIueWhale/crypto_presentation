@@ -1,0 +1,77 @@
+=============================================================================
+ALGORITHM: DIFFIE-HELLMAN KEY EXCHANGE (1976)
+TYPE:      Key Agreement Protocol
+STATUS:    The "One-Trick Pony" of Public Key Cryptography
+=============================================================================
+
+1. THE CORE CONCEPT
+-----------------------------------------------------------------------------
+Diffie-Hellman (DH) was the first system to use Public and Private keys, but 
+it does not "encrypt" messages and it does not "sign" documents.
+
+Its specific purpose is to allow two parties (Alice and Bob) who have never 
+met to agree on a shared password (Shared Secret) over an insecure channel, 
+without an eavesdropper (Eve) figuring out what that password is.
+
+Think of the keys as "ingredients" for a recipe, rather than locks and keys.
+
+
+2. THE MECHANISM (THE "PAINT MIXING" ANALOGY)
+-----------------------------------------------------------------------------
+Imagine mixing colors rather than math:
+
+[Public] Common Color:  Yellow (Known to everyone, even Eve)
+
+STEP A: Alice & Bob pick "Private Colors" (Private Keys)
+- Alice picks RED (Secret)
+- Bob picks BLUE (Secret)
+
+STEP B: They mix their secret with the public color (Public Keys)
+- Alice: Yellow + Red = ORANGE. (Alice sends ORANGE to Bob)
+- Bob:   Yellow + Blue = GREEN. (Bob sends GREEN to Alice)
+* Eve sees Yellow, Orange, and Green. She cannot un-mix them to find Red or Blue.
+
+STEP C: They add their secret to what they received (The Shared Secret)
+- Alice takes Bob's GREEN and adds her secret RED  = BROWN sludge.
+- Bob takes Alice's ORANGE and adds his secret BLUE = BROWN sludge.
+
+RESULT:
+Alice and Bob now have the same color (BROWN) to use as a key.
+Eve cannot make Brown because she lacks the private Red or Blue ingredients.
+
+
+3. THE MATHEMATICAL LOGIC
+-----------------------------------------------------------------------------
+The math relies on the "Discrete Logarithm Problem."
+g = public base (generator)
+p = public prime number
+
+1. Alice picks private integer (a). Calculates (g^a mod p) -> Sends to Bob.
+2. Bob picks private integer (b). Calculates (g^b mod p) -> Sends to Alice.
+3. Alice takes Bob's result and raises it to power of (a).
+4. Bob takes Alice's result and raises it to power of (b).
+
+Both result in the same number: (g^ab mod p).
+
+
+4. THE LIMITATIONS (WHY IT IS NOT RSA)
+-----------------------------------------------------------------------------
+While revolutionary, Diffie-Hellman has significant functional gaps:
+
+A. NO DIRECT ENCRYPTION
+   You cannot use a DH Public Key to encrypt a message like "Attack at Dawn."
+   You can only use it to derive a number to use for a *different* algorithm 
+   (like AES) to encrypt the message.
+
+B. NO DIGITAL SIGNATURES (Non-Repudiation)
+   Because the math is about mixing values, not reversible trapdoors, 
+   Alice cannot "sign" a document. There is no way to prove a message came 
+   from Alice using only DH.
+
+C. NO AUTHENTICATION (Man-in-the-Middle Attack)
+   This is the critical flaw. DH does not verify *who* is on the other end.
+   - Alice shouts her public key to Bob.
+   - Eve intercepts it.
+   - Eve pretends to be Bob and sends her own public key to Alice.
+   - Alice thinks she established a secure line with Bob, but she actually 
+     established a secure line with Eve.
