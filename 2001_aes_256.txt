@@ -1,0 +1,64 @@
+=============================================================================
+ALGORITHM: AES-256 (ADVANCED ENCRYPTION STANDARD)
+TYPE:      Symmetric Encryption
+STATUS:    The Perfect Lock ... For which they Stole the Key
+=============================================================================
+
+1. THE "BORING" PERFECTION
+-----------------------------------------------------------------------------
+AES-256 is effectively boring.
+
+It is "Symmetric" encryption. This is the exact same concept as the One-Time
+Pad from 1882, just adapted for computers.
+- You have a key.
+- I have the same key.
+- We scramble the message.
+
+As long as the key is 256 bits long, the universe will experience heat death
+before a supercomputer can guess it by brute force. It is mathematically
+solid. The NSA approved it for Top Secret data immediately.
+
+Why? Because they knew they didn't need to break the lock.
+
+
+2. THE TRAP: DUAL_EC_DRBG
+-----------------------------------------------------------------------------
+If you buy an impenetrable safe, the thief doesn't try to drill through the
+steel door. He just steals the machine that cuts the keys.
+
+The NSA realized that if everyone used AES-256, the world would go dark.
+They couldn't break the math of AES. So, they rigged the "Key Factory."
+
+In 2006, the NSA published a standard for a Random Number Generator called
+"Dual_EC_DRBG." They claimed it was highly secure and pushed it onto the
+industry.
+
+It wasn't. It contained a mathematical backdoor.
+- The generator relied on two points on a curve.
+- The NSA knew the secret relationship between those points.
+- This allowed them to predict the output of the generator.
+
+They didn't break AES. They just ensured that when you generated a "random"
+AES key to lock your secrets, they could predict exactly what key you were
+about to choose.
+
+
+3. THE DISCOVERY (2007 vs 2013)
+-----------------------------------------------------------------------------
+We actually spotted the smoke long before we found the gun.
+
+In 2007, Microsoft researchers Dan Shumow and Niels Ferguson stood up at a
+conference and publicly announced that the numbers in the NSA's algorithm
+looked suspicious—like they were mathematically constructed to be a
+backdoor.
+
+The NSA denied it.
+
+It wasn't until 2013, when Edward Snowden leaked the internal files, that
+the world got the confirmation:
+1. It was a deliberate backdoor.
+2. The NSA had paid the security company RSA $10 million to make this
+   broken generator the DEFAULT in their software.
+
+For years, companies believed they were using military-grade security.
+Technically, they were. But the keys in their pockets belonged to the NSA.

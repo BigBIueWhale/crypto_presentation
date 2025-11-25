@@ -1,0 +1,51 @@
+=============================================================================
+ALGORITHM: SHA-256 (SECURE HASH ALGORITHM 2)
+ORIGIN:    Created by the NSA (National Security Agency)
+PUBLISHED: 2001
+STATUS:    The "House of Cards" Upon Which the World Rests
+=============================================================================
+
+1. THE UNSETTLING ORIGIN
+-----------------------------------------------------------------------------
+SHA-256 was not born in a university classroom. It was designed behind closed
+doors by the NSA and published in 2001 as a federal standard.
+
+While the world trusts it to secure trillions of dollars in banking and
+crypto, we rely on it based on a terrifying assumption: "Nobody has cracked
+it *yet*."
+
+Unlike the One-Time Pad (Encryption), which is mathematically proven to be
+unbreakable, there is NO mathematical proof that SHA-256 is secure. It is
+entirely possible that a shortcut exists, and perhaps the NSA already knows
+it. We are betting the global economy on a math problem we hope is hard.
+
+
+2. THE GRAVEYARD OF "SECURE" ALGORITHMS
+-----------------------------------------------------------------------------
+History shows that hashing algorithms do not age gracefully. They rot.
+What was considered "military grade" one decade is considered "broken" the
+next.
+
+| ALGORITHM | YEAR | STATUS TODAY | CAUSE OF DEATH |
+|-----------|------|--------------|--------------------------|
+| MD5 | 1991 | DEAD | Collisions found on home laptops.|
+| SHA-1 | 1995 | DEAD | "SHAttered" by Google (2017). |
+| SHA-256 | 2001 | ALIVE... | ...Clock is ticking. |
+
+* "Alive" just means publicly known attacks haven't succeeded yet.
+
+
+3. BITCOIN'S PARANOIA (THE DOUBLE TAP)
+-----------------------------------------------------------------------------
+When Satoshi Nakamoto designed Bitcoin in 2008, he looked at SHA-256 and
+saw a potential weakness. He feared "Length Extension Attacks"—a flaw where
+an attacker can append data to a hash without knowing the secret.
+
+Because of this, and general paranoia about the longevity of the algorithm,
+Bitcoin almost never uses SHA-256 once. It uses "SHA-256d."
+
+The Formula: Final_Hash = SHA256( SHA256( Data ) )
+
+It performs the calculation, takes the result, and hashes it again. It is a
+desperate mathematical shield—a hope that if the algorithm is wounded, the
+second layer will prevent the system from bleeding out.
