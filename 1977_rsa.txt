@@ -68,11 +68,4 @@ B. SSL/TLS CERTIFICATES (The Internet)
    browser knows it is talking to the real Google, not an imposter.
 
 C. SECURE BOOT (Hardware Trust / BOOT.BIN)
-   This is the gold standard for hardware security.
-   - The Manufacturer (Sony/Apple/Microsoft) signs the firmware image 
-     (BOOT.BIN) with their master Private Key in a secure bunker.
-   - The device (PlayStation/iPhone) has the manufacturer's Public Key 
-     hard-coded (burned via eFuses) into the CPU silicon.
-   - On power-up, the CPU uses the Public Key to verify the signature.
-   - If the signature is valid, the code runs. If a hacker changed one bit 
-     of the BOOT.BIN, the math fails, and the device refuses to boot.
+   RSA 4096 (for example)
