@@ -47,3 +47,33 @@ They combine their signatures into one "Aggregate Signature."
 To the blockchain, it looks like a single person signed it.
 - Privacy: No one knows it was a multi-sig.
 - Scale: 3 signatures take up the space of 1.
+
+4. BEST PRIVACY YOU CAN GET ON BITCOIN (IN SIMPLE TERMS)
+-----------------------------------------------------------------------------
+We only talk about the *best* case:
+- You use Taproot addresses (start with "bc1p…").
+- You use Schnorr signatures.
+- You use multi-party transactions (CoinJoin-style).
+
+Think of the blockchain as a public notebook where every payment is written
+down forever.
+
+WHAT THE BLOCKCHAIN STILL SHOWS
+- How many coins go in and how many coins go out (all amounts are public).
+- Which “old coins” were spent and which “new coins” were created.
+  (Everyone can follow the chain of ownership step by step.)
+- That you used Taproot (special outputs marked as “bc1p…”).
+- One public key for each Taproot coin.
+- One Schnorr signature for each coin being spent.
+
+WHAT THE BLOCKCHAIN DOES *NOT* SHOW IN THIS BEST CASE
+- Whether a public key comes from:
+    - one person, or
+    - several people who combined their keys into one “group key”, or
+    - a more complex rule behind the scenes.
+- Any backup or emergency rules that were never used.
+- In a well-designed multi-party transaction with similar output amounts:
+    - exactly which input paid which output.
+
+So: the notebook still shows *all* money amounts and *all* links between
+coins, but hides some of the internal rules and exact pairings.
