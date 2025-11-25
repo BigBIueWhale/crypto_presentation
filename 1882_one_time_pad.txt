@@ -1,5 +1,6 @@
 =============================================================================
 ALGORITHM: THE ONE-TIME PAD
+INVENTORS: Frank Miller (Banker) & Gilbert Vernam (Engineer)
 STATUS:    The Only "Perfect" Secret
 =============================================================================
 
