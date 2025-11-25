@@ -1,0 +1,49 @@
+---
+File: /2021_schnorr.txt
+---
+
+=============================================================================
+ALGORITHM: SCHNORR SIGNATURES
+ORIGIN:    Claus Schnorr (1991) -> Patent Expired (2008) -> Bitcoin (2021)
+STATUS:    The "Stealth" Upgrade (Taproot)
+=============================================================================
+
++--------------------+-----------------------------------------------------+---------------------------------------------+---------------------+
+| METRIC             | RSA (1977)                                          | SCHNORR (1991 / BITCOIN 2021)               | WINNER              |
++--------------------+-----------------------------------------------------+---------------------------------------------+---------------------+
+| Signature Size     | Massive (256+ bytes). Bloats the blockchain.        | Tiny (64 bytes). Saves disk space.          | Schnorr             |
++--------------------+-----------------------------------------------------+---------------------------------------------+---------------------+
+| Verification Speed | Slow. Complex exponentiation.                       | Fast. Simple multiplication.                | Schnorr             |
++--------------------+-----------------------------------------------------+---------------------------------------------+---------------------+
+| Math Nature        | Non-Linear. You cannot add two RSA signatures.      | Linear. Sig(A) + Sig(B) = Sig(A+B).         | Schnorr             |
++--------------------+-----------------------------------------------------+---------------------------------------------+---------------------+
+| Security Proof     | Relies on Factoring. Harder to prove formally.      | Relies on Discrete Log. Easier to prove.    | Schnorr             |
++--------------------+-----------------------------------------------------+---------------------------------------------+---------------------+
+| Quantum Risk       | Vulnerable to Shor's Algorithm.                     | Vulnerable to Shor's Algorithm.             | Tie (Both lose)     |
++--------------------+-----------------------------------------------------+---------------------------------------------+---------------------+
+
+1. THE PATENT TRAGEDY
+-----------------------------------------------------------------------------
+Schnorr signatures are mathematically simpler and better than ECDSA.
+Why didn't Satoshi use them in 2008?
+Claus Schnorr held a patent on them until early 2008. They were not "open"
+standard. Satoshi had to use the clunkier ECDSA to avoid lawsuits.
+
+2. LINEARITY (THE MATH MAGIC)
+-----------------------------------------------------------------------------
+ECDSA is non-linear. You cannot just "add" two signatures together.
+Schnorr IS linear.
+
+   Sig(A) + Sig(B) = Sig(A+B)
+
+3. KEY AGGREGATION (THE CLOAK)
+-----------------------------------------------------------------------------
+In ECDSA, if 3 people sign a transaction (Multi-Sig), you see 3 signatures
+on the blockchain. It is obvious and heavy.
+
+In Schnorr, 3 people can combine their keys into one "Aggregate Key."
+They combine their signatures into one "Aggregate Signature."
+
+To the blockchain, it looks like a single person signed it.
+- Privacy: No one knows it was a multi-sig.
+- Scale: 3 signatures take up the space of 1.

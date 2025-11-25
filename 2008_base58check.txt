@@ -1,0 +1,44 @@
+---
+File: /2008_base58check.txt
+---
+
+=============================================================================
+ALGORITHM: BASE58CHECK
+INVENTOR:  Satoshi Nakamoto
+TYPE:      Binary-to-Text Encoding
+STATUS:    The "Human" Interface
+=============================================================================
+
+1. THE PROBLEM (BASE64 VS HUMANS)
+-----------------------------------------------------------------------------
+Computers like binary. Humans like text.
+The standard way to turn binary into text is Base64 (used in email).
+But Base64 includes:
+- 0 (Number Zero)
+- O (Capital Letter O)
+- I (Capital Letter I)
+- l (Lowercase Letter L)
+
+In a printed font, these look identical. If you hand-type a Bitcoin address
+and mistake an 'l' for an '1', the money is burned forever.
+
+2. THE ALGORITHM (BASE58)
+-----------------------------------------------------------------------------
+Satoshi took Base64 and physically removed the 6 ambiguous characters.
+He also removed symbols like '+' and '/' to ensure the address could be
+double-clicked and highlighted as a single word.
+
+3. THE "CHECK" (ERROR CORRECTION)
+-----------------------------------------------------------------------------
+If you mistype a single letter in a bank account number, the money goes to
+a stranger. In Bitcoin, the address effectively "spell checks" itself.
+
+The Formula:
+1. Take the Payload (The RIPEMD hash).
+2. Double Hash it: SHA256(SHA256(Payload)).
+3. Take the first 4 bytes (Checksum).
+4. Glue them to the end of the Payload.
+
+When a wallet reads an address, it runs the math again. If the checksum
+doesn't match the payload, the wallet screams "INVALID ADDRESS" and refuses
+to send.

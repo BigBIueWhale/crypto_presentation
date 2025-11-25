@@ -1,0 +1,39 @@
+---
+File: /1996_ripemd160.txt
+---
+
+=============================================================================
+ALGORITHM: RIPEMD-160 (RACE Integrity Primitives Evaluation Message Digest)
+ORIGIN:    European Union (RACE Project) vs NSA
+STATUS:    The "Shrink Ray"
+=============================================================================
+
+1. THE PARANOIA OF ORIGIN
+-----------------------------------------------------------------------------
+In the 90s, almost all hash standards (MD5, SHA-1) came from the NSA.
+Europeans didn't trust them. The academic community in Belgium created
+RIPEMD as an open, transparent alternative.
+
+Satoshi Nakamoto likely chose this not just for security, but for *size*.
+
+2. THE MECHANISM (COMPRESSION)
+-----------------------------------------------------------------------------
+SHA-256 outputs 32 bytes. This is too long for a convenient "account number."
+If you hashed a public key with only SHA-256, addresses would be unwieldy.
+
+RIPEMD-160 crushes that 32-byte hash down to 20 bytes.
+
+The "Hash160" Formula:
+   Address_Hash = RIPEMD160( SHA256( Public_Key ) )
+
+3. WHY USE TWO HASHES?
+-----------------------------------------------------------------------------
+It shields the Public Key.
+Until you spend your Bitcoin, your Public Key is not visible on the network;
+only the "Hash160" (the address) is visible.
+
+If a quantum computer breaks Elliptic Curve (ECDSA) tomorrow, it can derive
+private keys from public keys. But it CANNOT derive a public key from a
+RIPEMD hash.
+* Unspent Bitcoin addresses are quantum-safe.
+* Reused addresses are not.
