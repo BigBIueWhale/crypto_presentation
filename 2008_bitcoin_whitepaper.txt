@@ -1,0 +1,95 @@
+=============================================================================
+FILE: /2008_bitcoin_whitepaper.txt
+TITLE: Bitcoin: A Peer-to-Peer Electronic Cash System
+AUTHOR: Satoshi Nakamoto (Pseudonym)
+DATE: October 31, 2008
+STATUS: The Synthesis / The Solution to the Byzantine Generals Problem
+=============================================================================
+
+1. THE FINAL PIECE OF THE PUZZLE
+-----------------------------------------------------------------------------
+This 9-page document is not an invention of new cryptography. It is a
+blueprint that arranges the existing tools listed in this directory into a
+novel economic system.
+
+It addresses the fundamental flaw described in the 1810 Banking file: the
+reliance on "Trusted Third Parties."
+
+Digital cash existed before 2008, but it always suffered from the "Double-Spend"
+problem. If money is just a digital file, what stops me from sending the same
+dollar to Alice and then to Bob?
+- Previous Solution: A central bank server checks every transaction.
+- Bitcoin Solution: Everyone checks every transaction simultaneously.
+
+2. THE MECHANISM: "THE LONGEST CHAIN IS TRUTH"
+-----------------------------------------------------------------------------
+Satoshi proposed replacing the central bank with a "Timestamp Server" based on
+Proof-of-Work (using SHA-256, as detailed in the 2001 file).
+
+The network votes on the order of transactions not with IDs, but with CPU
+power.
+
+- Transactions are grouped into "Blocks."
+- To add a block, a computer must solve a hard SHA-256 puzzle.
+- The solution proves effort was expended.
+- As long as honest nodes control >50% of CPU power, their chain of blocks
+  Will grow faster than any attacker trying to rewrite history.
+
+The security relies on the economic reality that it is more profitable to
+play by the rules (and earn new coins via mining) than to attack the network.
+
+3. THE PARADIGM SHIFT (A COMPARISON)
+-----------------------------------------------------------------------------
+The whitepaper fundamentally redefines financial trust. It moves trust from
+institutions to mathematical proofs.
+
++-----------------------+------------------------------------------+------------------------------------------+
+| FEATURE               | TRADITIONAL BANKING (TRUSTED MODEL)      | BITCOIN (PEER-TO-PEER MODEL)             |
++-----------------------+------------------------------------------+------------------------------------------+
+| Double-Spend Check    | A central database verifies balance.     | Decentralized consensus (Proof-of-Work). |
++-----------------------+------------------------------------------+------------------------------------------+
+| Transaction Finality  | Reversible. Banks can reverse charges,   | Final. Once confirmed in blocks, it is   |
+|                       | freeze accounts, or mediate disputes.    | mathematically impractical to reverse.   |
++-----------------------+------------------------------------------+------------------------------------------+
+| Identity              | Real Names (KYC). Your identity is       | Pseudonymous. Your identity is a         |
+|                       | tied to your account number.             | Public Key (ECC from 1985 file).         |
++-----------------------+------------------------------------------+------------------------------------------+
+| Trust Model           | "Trust us, we are a regulated bank."     | "Don't trust. Verify." (Crypto proof).   |
++-----------------------+------------------------------------------+------------------------------------------+
+| Currency Supply       | Managed by Central Bank policy           | Fixed by algorithm. Capped at 21 million |
+|                       | (prone to arbitrary inflation).          | units (predictable scarcity).            |
++-----------------------+------------------------------------------+------------------------------------------+
+
+4. THE DEFINITION OF A COIN
+-----------------------------------------------------------------------------
+Satoshi defines an electronic coin defined purely as a chain of digital
+signatures (using ECDSA).
+
+"We define an electronic coin as a chain of digital signatures. Each owner
+transfers the coin to the next by digitally signing a hash of the previous
+transaction and the public key of the next owner and adding these to the end
+of the coin."
+
+5. THE ALGORITHMIC RECIPE
+-----------------------------------------------------------------------------
+Satoshi did not write new cryptography; he selected specific, existing
+ingredients to build the protocol.
+
++----------------------+---------------------------+---------------------------------------------------+
+| COMPONENT            | ALGORITHM USED            | PURPOSE IN THE SYSTEM                             |
++----------------------+---------------------------+---------------------------------------------------+
+| Consensus / Mining   | SHA-256 (Double Round)    | The "Puzzle." Miners hash headers twice to find   |
+|                      |                           | a value below the Target Difficulty.              |
++----------------------+---------------------------+---------------------------------------------------+
+| Digital Signatures   | ECDSA (secp256k1)         | The "Key." Proves you own the funds without       |
+|                      |                           | revealing your private key.                       |
++----------------------+---------------------------+---------------------------------------------------+
+| Addressing           | RIPEMD-160                | The "Shrink Ray." Compresses Public Keys into     |
+|                      |                           | 20-byte addresses for human handling.             |
++----------------------+---------------------------+---------------------------------------------------+
+| Integrity            | Merkle Tree (SHA-256)     | The "Fingerprint." Condenses thousands of         |
+|                      |                           | transactions into a single Root Hash.             |
++----------------------+---------------------------+---------------------------------------------------+
+| User Interface       | Base58Check               | The "Spellcheck." Encodes binary data into text,  |
+|                      |                           | removing ambiguous characters (0, O, I, l).       |
++----------------------+---------------------------+---------------------------------------------------+
