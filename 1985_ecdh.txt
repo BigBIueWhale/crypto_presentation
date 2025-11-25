@@ -1,6 +1,6 @@
 =============================================================================
 ALGORITHM: ECDH (Elliptic Curve Diffie-Hellman)
-INVENTED:  1985 (Neal Koblitz & Victor Miller)
+INVENTED:  1985 by Neal Koblitz (Jewish) & Victor Miller (Jewish)
 STATUS:    The "Titanium" Upgrade (Lighter, Stronger, Faster)
 =============================================================================
 

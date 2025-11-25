@@ -1,5 +1,7 @@
 =============================================================================
 ALGORITHM: RSA (RIVEST–SHAMIR–ADLEMAN, 1977)
+INVENTORS: Ron Rivest (Not Jewish), Adi Shamir (Jewish Israeli),
+           & Leonard Adleman (Jewish)
 TYPE:      Full Asymmetric Cryptosystem (Encryption & Digital Signatures)
 STATUS:    The "Swiss Army Knife" of Public Key Cryptography
 =============================================================================

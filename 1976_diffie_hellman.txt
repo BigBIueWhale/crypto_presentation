@@ -1,5 +1,6 @@
 =============================================================================
 ALGORITHM: DIFFIE-HELLMAN KEY EXCHANGE
+INVENTORS: Whitfield Diffie (Not Jewish) & Martin Hellman (Jewish)
 STATUS:    Math is Solid, Identity is Blind
 =============================================================================
 
