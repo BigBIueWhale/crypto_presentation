@@ -1,0 +1,32 @@
+---
+File: /1917_one_time_pad.txt
+---
+
+=============================================================================
+ALGORITHM: THE ONE-TIME PAD
+STATUS:    The Only "Perfect" Secret
+=============================================================================
+
+1. THE "NO PATTERN" RULE
+-----------------------------------------------------------------------------
+Imagine a book filled with completely random gibberish letters.
+You have one copy. I have the other.
+- I want to send "HELLO".
+- I look at the first 5 random letters on page 1.
+- I mix my word with that gibberish.
+- result: Total noise.
+
+2. WHY IT CAN'T BE CRACKED
+-----------------------------------------------------------------------------
+If a spy intercepts the noise, they can't "solve" it.
+Because the key is random, the noise could decode to literally anything.
+"XJ9#M" could be "HELLO", "BOMB!", or "LUNCH".
+Without the specific page of the book, every guess is equally right.
+
+3. THE CATCH: HEAVY LIFTING
+-----------------------------------------------------------------------------
+It has a 1-to-1 "cost."
+- To send a 10-page letter, you must physically hand me a 10-page key first.
+- To send a library, you must hand me a library.
+- Once you use a page, you burn it. You can never reuse the "pad."
+Perfect security, but totally useless for talking to a million soldiers.

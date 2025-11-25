@@ -1,74 +1,48 @@
----
-File: /1918_enigma_machine.txt
----
-
 =============================================================================
-ALGORITHM: THE ENIGMA MACHINE (Arthur Scherbius, 1918)
-TYPE:      Electromechanical Polyalphabetic Substitution
-STATUS:    The "Industrialization" of Cryptography
+HISTORY: THE ONE-TIME PAD
+FOCUS:     Origins & The Invention of XOR
 =============================================================================
 
-1. THE CORE CONCEPT
+1. THE LOST INVENTOR (1882)
 -----------------------------------------------------------------------------
-Before Enigma, codes were manual (book cyphers). Enigma mechanized encryption.
-It generates a "Keystream" that changes with every single button press.
+The concept was first invented by a Sacramento banker named Frank Miller in
+1882. He published a book titled "Telegraphic Code to Insure Privacy and
+Secrecy in the Transmission of Telegrams."
 
-If you type "HELLO":
-- The first 'L' might encrypt to 'X'.
-- The second 'L' might encrypt to 'P'.
+Miller's version did not use XOR. It used modular addition with numbers.
+He proposed a system where a list of random numbers (the key) was added to
+the code numbers of a message. However, Miller was a banker, not a
+mathematician, and his invention went largely unnoticed and was forgotten
+for decades.
 
-This destroyed frequency analysis (the method used to solve Sherlock Holmes
-style puzzles), because the frequency of letters in the ciphertext became flat.
 
-
-2. THE MECHANISM (THE "SHIFTING MAZE" ANALOGY)
+2. THE ENGINEER & THE XOR MOMENT (1917)
 -----------------------------------------------------------------------------
-Imagine a maze where the walls move every time you take a step.
+The One-Time Pad was reinvented in 1917 by Gilbert Vernam, an engineer at
+AT&T Bell Labs. This is the precise moment the algorithm became based on XOR.
 
-PATHWAY:
-1. Keyboard: Operator presses 'A'.
-2. Plugboard (Steckerbrett): Swaps 'A' with another letter (e.g., 'M').
-3. Rotors (Walzen): The signal passes through 3 (or 4) rotating wheels.
-   - Each wheel has internal wiring that scrambles the path.
-4. Reflector (Umkehrwalze): The signal hits a mirror at the end, turns around,
-   and goes back through the rotors in reverse order.
-5. Lampboard: The final signal lights up a bulb (e.g., 'Z').
+Vernam was trying to encrypt teleprinter traffic (telegraphs that used paper
+tapes with holes). Teleprinters used a 5-bit binary code (Baudot code).
 
-THE HEARTBEAT:
-Every time a key is pressed, the rightmost rotor clicks forward one step (1/26).
-Like an odometer, once it completes a full turn, it kicks the middle rotor.
-This means the electrical path (the circuit) is physically different for
-every single character of the message.
+Vernam realized that if he took a loop of paper tape containing random holes
+(the key) and combined it with the message tape using electrical relays, he
+could scramble the signal.
+- The electrical logic he built was "Modulo 2 Addition."
+- In modern computer science, we call this the XOR operation.
+
+This was the first time binary logic was used to mix a random key with a
+message.
 
 
-3. THE KEY (THE "DAILY SETTINGS")
+3. THE MATHEMATICIAN & THE PROOF (1940s)
 -----------------------------------------------------------------------------
-Security did not rely on the machine's design (which was known), but on the
-initial state (The Key). The Germans changed this every day at midnight.
+While Vernam built the machine, he didn't prove *why* it was unbreakable.
+That happened during World War II.
 
-The Total Search Space was approx 158 quintillion (10^18) possibilities:
-1. Rotor Order: Which 3 rotors out of 5 are installed? (60 combinations)
-2. Rotor Settings: What is the starting letter for each? (26^3 = 17,576)
-3. Ring Settings: Internal wiring offset.
-4. Plugboard: 10 wires connecting 20 letters. (150 trillion combinations).
+Claude Shannon, the father of Information Theory, was working on encryption
+for the Pentagon. In a classified report (declassified in 1949), he proved
+mathematically that Vernam's system provided "Perfect Secrecy."
 
-* The Plugboard provided the massive numbers, but the Rotors provided the
-  cryptographic logic.
-
-
-4. THE FATAL FLAW (WHY IT BROKE)
------------------------------------------------------------------------------
-Despite the math, Enigma had a mechanical constraint that Turing exploited:
-
-THE REFLECTOR CONSTRAINT:
-Because the signal had to bounce off the reflector to return to the lamps,
-a letter could never encrypt to itself.
-- Input 'A' could be 'B', 'Z', or 'X'.
-- Input 'A' could NEVER be 'A'.
-
-CRYPTANALYSIS IMPACT:
-This allowed Bletchley Park to use "Cribs" (guessed phrases like "WETTER"
-for weather reports). If they aligned a crib with the ciphertext and a
-letter matched itself, they knew that position was impossible. This
-eliminated massive chunks of the search space, allowing the "Bombe" machines
-to find the daily key mechanically.
+Shannon proved that as long as the key was random, as long as the message,
+and never reused, the XOR operation destroyed 100% of the information,
+making it theoretically impossible to crack, regardless of computing power.
