@@ -1,0 +1,86 @@
+---
+File: /2016_zk_snarks.txt
+---
+
+=============================================================================
+ALGORITHM: zk-SNARKs (Zero-Knowledge Succinct Non-Interactive Argument of Knowledge)
+ORIGIN:    1985 (Theory) -> 2016 (Zcash Implementation)
+INVENTORS: Shafi Goldwasser (Jewish Israeli), Silvio Micali (Italian), 
+           Charles Rackoff (Jewish) -> Applied by Eli Ben-Sasson (Jewish Israeli)
+STATUS:    "Moon Math" / The Cloaking Device
+=============================================================================
+
+1. THE PARADOX (1985)
+-----------------------------------------------------------------------------
+In 1985, Shafi Goldwasser, Silvio Micali, and Charles Rackoff published a
+paper that seemed to defy logic: "The Knowledge Complexity of Interactive
+Proof Systems."
+
+They asked: "Can I prove to you that I know a secret, without actually
+telling you the secret?"
+
+The Analogy (The Color-Blind Friend):
+- You have a Red ball and a Green ball. Your friend is color-blind; he sees
+  two gray balls. He thinks you are lying about them being different.
+- You tell him: "Hide them behind your back. Switch them (or don't). Show
+  them to me, and I will tell you if you switched."
+- You do this 100 times. You get it right 100 times.
+- PROOF: You *must* be able to see the color.
+- ZERO KNOWLEDGE: The friend still has no idea which ball is Red or Green.
+  He only learned that *you* know the difference.
+
+2. THE MECHANISM (THE ZCASH UPGRADE)
+-----------------------------------------------------------------------------
+Bitcoin is a glass house; everyone sees everything.
+Monero (Ring Signatures) is a masquerade ball; you hide in a crowd of 11.
+Zcash is a Klingon Cloaking Device.
+
+The Zcash team (including Eli Ben-Sasson) turned the 1985 theory into
+"zk-SNARKs." This allows a transaction to be fully encrypted on the
+blockchain, yet still mathematically verifiable by miners.
+
+- Sender: Encrypted.
+- Receiver: Encrypted.
+- Amount: Encrypted.
+
+The Miner checks the "Proof" (the shadow of the math) rather than the data
+itself. They verify that the money exists and hasn't been spent, without
+ever knowing who owns it or how much it is.
+
+3. THE "TOXIC WASTE" (THE FATAL FLAW)
+-----------------------------------------------------------------------------
+Unlike Monero or Bitcoin, zk-SNARKs required a "Trusted Setup" to start.
+To create the mathematical universe of Zcash, the founders had to generate
+a specific master number (The Master Key).
+
+If this Master Key was kept, the owner could not steal other people's money,
+but they could counterfeit infinite Zcash without detection. They would have
+"God Mode" over the currency supply.
+
+The 2016 Ceremony:
+To ensure safety, the Zcash founders performed a bizarre ritual.
+- They drove to different locations securely.
+- They used computers with air-gapped hardware.
+- After generating the math, they physically destroyed the computers using
+  saws and fire to ensure the "Toxic Waste" (the Master Key) was gone forever.
+
+Trust in Zcash relies on the belief that *at least one* of those participants
+successfully destroyed their share of the key.
+
+4. ZCASH VS MONERO
+-----------------------------------------------------------------------------
+This is the modern "VHS vs Beta."
+
+MONERO (Ring Signatures):
+- Strategy: Obfuscation. "I am one of these 11 people."
+- Pros: No "Trusted Setup." Private by default (mandatory).
+- Cons: Theoretically traceable if you possess infinite computing power to
+  map statistical probabilities. Signature size scales with anonymity set.
+
+ZCASH (zk-SNARKs):
+- Strategy: Encryption. "I am [REDACTED]."
+- Pros: The math is absolute. The anonymity set is "everyone." Proofs are
+  tiny (Succinct).
+- Cons: Requires the "Trusted Setup" (though newer versions like Halo 2 are
+  removing this). Privacy is often optional, leading to a fragmented anonymity
+  set (if only 10% use privacy, they stand out).

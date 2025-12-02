@@ -1,0 +1,76 @@
+---
+File: /2001_ring_signatures.txt
+---
+
+=============================================================================
+ALGORITHM: RING SIGNATURES
+INVENTORS: Ron Rivest (Not Jewish), Adi Shamir (Jewish Israeli),
+           & Yael Tauman Kalai (Jewish Israeli)
+DATE:      2001 (Paper: "How to Leak a Secret")
+STATUS:    The "Crowd" Camouflage
+=============================================================================
+
+1. THE "WHITE HOUSE LEAK" SCENARIO
+-----------------------------------------------------------------------------
+Rivest and Shamir (the 'R' and 'S' from RSA) returned two decades later with
+a student, Yael Tauman, to solve a specific paradox: How do you leak a
+secret document from the White House?
+
+The Dilemma:
+- If you sign it with your Private Key, the President knows it was you. You
+  go to jail.
+- If you send it anonymously, the Press won't believe it came from a high-
+  ranking official. They ignore it.
+
+The Solution: The Ring Signature.
+The trio invented a way to create a digital signature that mathematically
+proves: "This message was signed by ONE of the specific people in this
+group (e.g., the Cabinet), but it is mathematically impossible to tell
+WHICH one."
+
+2. THE MECHANISM (NON-INTERACTIVE MAGIC)
+-----------------------------------------------------------------------------
+In standard cryptography (RSA/DSA), you need your Private Key to sign and
+your Public Key to verify. It is a 1-to-1 relationship.
+
+In Ring Signatures, you use your Private Key and a list of *other people's*
+Public Keys.
+
+The "Magic" Trick:
+You do NOT need the other people's permission or participation.
+1. You act as the "Signer."
+2. You grab the Public Keys of 10 other politicians (the "Decoys") from a
+   public directory.
+3. You use your Private Key to mathematically "glue" these keys together
+   into a ring.
+
+To an observer, the equation creates a closed loop. It is a valid structure,
+proving one person in the ring closed the loop, but the math erases the
+starting point. The "Decoys" don't even know they were involved.
+
+3. THE EVOLUTION: LINKABLE RING SIGNATURES
+-----------------------------------------------------------------------------
+The 2001 version had a flaw for money: Double Spending.
+If the signer is totally anonymous, what stops them from spending the same
+digital dollar twice?
+
+The Fix: "Key Images" (Linkability).
+A mathematical tag is added to the signature.
+- It is unique to the Private Key being used.
+- It does NOT reveal who the Private Key belongs to.
+- BUT, if the same Private Key tries to sign a second transaction, the
+  network sees the duplicate "Key Image" and rejects it.
+
+4. APPLICATION: MONERO (THE GHOST)
+-----------------------------------------------------------------------------
+While Bitcoin (2008) went for a transparent ledger where every transaction
+is visible (Alice pays Bob), the CryptoNote protocol (2013) utilized Ring
+Signatures to create "Plausible Deniability."
+
+When you spend Monero:
+- The network takes your real coin.
+- It grabs 10+ random "decoy" coins from the blockchain's history.
+- It mashes them together in a Ring Signature.
+
+The outside world sees 11 possible sources of funds. Even the person
+receiving the money cannot tell which of the 11 inputs actually paid them.

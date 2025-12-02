@@ -1,0 +1,77 @@
+---
+File: /2019_randomx.txt
+---
+
+=============================================================================
+ALGORITHM: RANDOMX
+INVENTORS: Tevador, Hyc, & The Monero Project
+DATE:      November 30, 2019 (Activation)
+STATUS:    The "Anti-Factory" Virus
+=============================================================================
+
+1. THE ARMS RACE (THE DEATH OF "ONE CPU ONE VOTE")
+-----------------------------------------------------------------------------
+By 2019, Satoshi's vision of "One CPU, One Vote" was dead.
+Bitcoin mining had moved from home laptops (2009) to Graphics Cards (2010)
+to massive industrial warehouses full of ASICs (Application Specific
+Integrated Circuits).
+
+An ASIC is a computer chip designed to do ONE thing (SHA-256) perfectly.
+- A CPU is like a Swiss Army Knife (can do anything).
+- An ASIC is like an industrial press (can only stamp metal, but does it
+  1,000,000 times faster).
+
+Monero's developers realized: As long as the math is simple, factories will
+always beat the people. To save decentralization, they had to make the math
+"ugly."
+
+2. THE STRATEGY: "IF YOU CAN'T BEAT THEM, CONFUSE THEM"
+-----------------------------------------------------------------------------
+Previous algorithms (CryptoNight) tried to rely on memory (RAM) to stop
+ASICs, but hardware companies just built chips with more memory.
+
+RandomX changed the rules. Instead of asking the miner to solve a static
+math problem, it forces the miner to run a randomly generated computer
+program.
+
+The "Shape-Shifting" Puzzle:
+1. The network generates a random piece of code (logic, math, branches).
+2. To "mine" a block, your hardware must execute this code.
+3. Because the code changes every time, you cannot build a chip specialized
+   for it.
+
+The only piece of hardware in the world designed to run "random, changing,
+complex code" efficiently is the General Purpose CPU (the one in your
+laptop).
+
+3. THE MECHANISM (CPU & RAM BINDING)
+-----------------------------------------------------------------------------
+RandomX turns the complexity of modern computing into a weapon.
+
+A. The "Scratchpad" (RAM Bound)
+   The algorithm requires 2GB+ of RAM to run.
+   - It forces the processor to constantly read and write to memory.
+   - This bottlenecks GPUs (Graphics Cards), which have fast math but slow
+     latency when talking to main memory.
+
+B. The "Instruction Soup" (CPU Bound)
+   The random programs utilize every part of a modern CPU:
+   - Floating Point Math (Decimals).
+   - Branch Prediction ("If X do Y, else do Z").
+   - Out-of-Order Execution.
+
+An ASIC designer cannot optimize for this. To build a chip that runs
+RandomX efficiently, they would effectively have to re-invent the Intel i7
+or AMD Ryzen.
+
+4. THE RESULT
+-----------------------------------------------------------------------------
+On November 30, 2019, Monero flipped the switch.
+- Overnight, industrial ASIC farms went offline. They became paperweights.
+- GPU farms (which dominate Ethereum) became inefficient.
+- The network fell back into the hands of home users and botnets (hacked
+  servers).
+
+It remains the only major cryptocurrency where a kid with a gaming PC can
+still mine meaningful amounts of coin, fulfilling the 2008 whitepaper's
+original promise.
