@@ -1,0 +1,56 @@
+---
+File: /2009_genesis_block.txt
+---
+
+=============================================================================
+BLOCK:     #0 (THE GENESIS BLOCK)
+MINER:     Satoshi Nakamoto
+DATE:      January 3, 2009
+STATUS:    The Big Bang
+=============================================================================
+
+1. THE HARDCODED ANCHOR
+-----------------------------------------------------------------------------
+Every block in Bitcoin points to the block before it. But what about the
+very first one? It has no parent.
+
+Block #0 cannot be mined like normal blocks. It is written directly into the
+source code of the Bitcoin software. It is the hardcoded anchor that every
+other computer agrees is the starting point.
+
+If you download Bitcoin today, your computer still looks for this specific
+block to know it is on the right network.
+
+2. THE SECRET MESSAGE
+-----------------------------------------------------------------------------
+Satoshi left a note inside this block.
+In the section of the transaction meant for arbitrary data (the "Coinbase"),
+he typed a line of text instead of random numbers.
+
+The Hex Data:
+54 68 65 20 54 69 6d 65 73 20 30 33 2f 4a 61 6e 2f 32 30 30 39 20 43 68 61 6e 63 65 6c 6c 6f 72 20 6f 6e 20 62 72 69 6e 6b 20 6f 66 20 73 65 63 6f 6e 6d 20 62 61 69 6c 6f 75 74 20 66 6f 72 20 62 61 6e 6b 73
+
+Decoded Text:
+"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"
+
+
+
+3. WHY THIS MESSAGE MATTERS
+-----------------------------------------------------------------------------
+This sentence serves two powerful purposes:
+
+A. Proof of Time (No Pre-Mine)
+   By including a newspaper headline from that specific day, Satoshi proved
+   he didn't secretly mine Bitcoin months in advance. He started the race
+   fairly, on the day the newspaper was printed.
+
+B. The Mission Statement
+   The headline describes the failure of the old banking system (government
+   bailouts). Placing it inside the first Bitcoin block forever sets the
+   tone: Bitcoin was built as an escape hatch from that failing system.
+
+4. THE UNSPENDABLE COINS
+-----------------------------------------------------------------------------
+The first 50 Bitcoins created in this block are weird. Due to a quirk in
+the way Satoshi wrote the code, these 50 BTC can never be spent. They act
+like a permanent trophy in the display case of the blockchain.
