@@ -1,0 +1,38 @@
+# ------------------------------------------------------------------
+# .gitattributes
+# Auto-detect text files and perform LF normalization
+# ------------------------------------------------------------------
+
+* text=auto
+
+# ------------------------------------------------------------------
+# Image Files (Treat as binary)
+# ------------------------------------------------------------------
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.bmp binary
+*.tiff binary
+*.tif binary
+*.svg binary
+*.eps binary
+*.psd binary
+*.ai binary
+
+# ------------------------------------------------------------------
+# Video Files (Treat as binary)
+# ------------------------------------------------------------------
+*.mp4 binary
+*.mov binary
+*.avi binary
+*.mkv binary
+*.webm binary
+*.wmv binary
+*.flv binary
+*.mpg binary
+*.mpeg binary
+*.ogv binary
+*.3gp binary
