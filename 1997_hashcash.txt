@@ -1,0 +1,51 @@
+---
+File: /1997_hashcash.txt
+---
+
+=============================================================================
+ALGORITHM: HASHCASH (PROOF OF WORK)
+INVENTOR:  Adam Back (British Cryptographer)
+DATE:      1997
+STATUS:    The Engine of Bitcoin
+=============================================================================
+
+1. THE ORIGINAL GOAL: STOPPING SPAM
+-----------------------------------------------------------------------------
+Before Bitcoin, Adam Back invented this to fix email.
+The problem: Sending email is free. A spammer can send 1 million emails for
+zero cost.
+
+The Solution: A "Digital Postage Stamp."
+Adam Back wrote code that forced your computer to do a tiny bit of work
+(about 1 second of math) before it could send an email.
+- For you (sending 1 email): You don't even notice the 1 second.
+- For a spammer (sending 1,000,000 emails): Their computer crashes. It would
+  take months to calculate the stamps.
+
+2. HOW IT WORKS (THE SUDOKU ANALOGY)
+-----------------------------------------------------------------------------
+How do you prove your computer did the work? You solve a puzzle.
+
+Think of it like a Sudoku puzzle:
+- SOLVING IT: Takes a human 30 minutes of hard brain work.
+- CHECKING IT: Takes a friend 1 second to look at the grid and say "Correct."
+
+Hashcash works the same way:
+1. The Sender's computer must guess a random number millions of times until
+   it gets a "Lucky Number" (a hash that starts with Zeros).
+2. The Receiver's computer looks at the number and instantly knows you did
+   the work.
+
+
+
+3. SATOSHI'S GENIUS MOVE
+-----------------------------------------------------------------------------
+Hashcash failed for email (people didn't like the delay).
+But Satoshi Nakamoto saw it and realized it was perfect for money.
+
+He put Hashcash into Bitcoin.
+- Instead of "Sending Email," computers compete to "Build a Block."
+- The "Work" requires huge amounts of electricity.
+- This electricity cost is what secures the network. If a hacker wants to
+  rewrite Bitcoin's history, they have to re-do all the electricity work
+  from scratch. It is too expensive to cheat.
